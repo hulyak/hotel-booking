@@ -21,12 +21,12 @@ const RoomProvider = ({ children }) => {
   // get data, when component mounts change the state
   useEffect(() => {
     let rooms = formatData(items);
-    let featuredRooms = rooms.filter(room => room.feature === true);
+    let featuredRooms = rooms.filter(room => room.featured === true);
     setRooms(rooms);
     setFeaturedRooms(featuredRooms);
     setSortedRooms(rooms)
     setLoading(false);
-    console.log(rooms);
+    // console.log(rooms);
   }, []);
 
   return (
