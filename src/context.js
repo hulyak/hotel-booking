@@ -1,38 +1,52 @@
-import React, { useState, useEffect } from "react";
-import items from "./data"; 
+import React, { Component } from "react";
+import items from "./data";
+
 const RoomContext = React.createContext();
 
-const RoomProvider = ({ children }) => {
-  const [rooms, setRooms] = useState([]);
-  const [sortedRooms, setSortedRooms] = useState([]);
-  const [featuredRooms, setFeaturedRooms] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  const formatData = (items) => {
-    let tempItems = items.map((item) => {
-      let id = item.sys.id;
-      let images = item.fields.images.map(image => image.fields.url);
-      let room = {...item.fields, images, id};
-      return room;
-    });
-    return tempItems;
+export default class RoomProvider extends Component {
+  state = {
+    rooms: [],
+    sortedRooms: [],
+    featuredRooms: [],
+    loading: true,
   };
 
   // get data, when component mounts change the state
-  useEffect(() => {
-    let rooms = formatData(items);
-    let featuredRooms = rooms.filter(room => room.featured === true);
-    setRooms(rooms);
-    setFeaturedRooms(featuredRooms);
-    setSortedRooms(rooms)
-    setLoading(false);
-    // console.log(rooms);
-  }, []);
+  componentDidMount() {
+    let rooms = this.formatData(items);
+    let featuredRooms = rooms.filter((room) => room.featured === true);
+    this.setState({
+      rooms,
+      featuredRooms,
+      sortedRooms: rooms,
+      loading: false,
+    });
+  }
 
-  return (
-    <RoomContext.Provider value={{...rooms, ...sortedRooms, ...featuredRooms, ...loading}}>{children}</RoomContext.Provider>
-  );
-};
+  formatData(items) {
+    let tempItems = items.map((item) => {
+      let id = item.sys.id;
+      let images = item.fields.images.map((image) => image.fields.file.url);
+      let room = { ...item.fields, images, id };
+      return room;
+    });
+    return tempItems;
+  }
+
+  render() {
+    return (
+      <RoomContext.Provider
+        value={{
+          ...this.state,
+          getRoom: this.getRoom,
+          handleChange: this.handleChange,
+        }}
+      >
+        {this.props.children}
+      </RoomContext.Provider>
+    );
+  }
+}
 
 const RoomConsumer = RoomContext.Consumer;
 
