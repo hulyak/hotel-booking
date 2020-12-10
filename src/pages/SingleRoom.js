@@ -11,7 +11,6 @@ export default class SingleRoom extends Component {
     super(props);
     console.log(this.props);
     this.state = {
-      // comes from history
       slug: this.props.match.params.slug,
       defaultBcg,
     };
@@ -80,23 +79,19 @@ export default class SingleRoom extends Component {
                 Max capacity:
                 {capacity > 1 ? `${capacity} people` : `${capacity} person`}
               </h6>
-              <h6>
-                  {pets ? "Pets allowed" : "No pets allowed"} 
-              </h6>
-              <h6>
-                  {breakfast && "free breakfast included"}
-              </h6>
+              <h6>{pets ? "Pets allowed" : "No pets allowed"}</h6>
+              <h6>{breakfast && "free breakfast included"}</h6>
             </article>
           </div>
         </section>
 
         <section className="room-extras">
-            <h6>Extras</h6>
-            <ul className="extras">
-                {extras.map((item, index) => {
-                    return <li key={index}>- {item}</li>
-                })}
-            </ul>
+          <h6>Extras</h6>
+          <ul className="extras">
+            {extras.map((item, index) => {
+              return <li key={index}>- {item}</li>;
+            })}
+          </ul>
         </section>
       </>
     );

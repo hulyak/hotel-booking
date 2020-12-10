@@ -444,6 +444,7 @@ h6 {
   width: 80vw;
   margin: 0 auto;
   display: grid;
+  /* only fill the space, don't span across the page, not auto-fit */
   grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
   grid-row-gap: 2rem;
   grid-column-gap: 30px;
