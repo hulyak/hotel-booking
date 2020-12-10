@@ -137,6 +137,8 @@ export default class RoomProvider extends Component {
 
 const RoomConsumer = RoomContext.Consumer;
 
+export { RoomProvider, RoomConsumer, RoomContext };
+
 // HOC
 export function withRoomConsumer(Component) {
   return function ConsumerWrapper(props) {
@@ -148,4 +150,4 @@ export function withRoomConsumer(Component) {
   };
 }
 
-export { RoomProvider, RoomConsumer, RoomContext };
+

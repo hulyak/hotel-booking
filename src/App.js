@@ -7,24 +7,15 @@ import Navbar from "./components/Navbar";
 
 import { Route, Switch } from "react-router-dom";
 
-
 function App() {
   return (
     <>
       <Navbar />
       <Switch>
-        <Route path="/" exact>
-          <Home />
-        </Route>
-        <Route path="/rooms" exact>
-          <Rooms />
-        </Route>
-        <Route path="/rooms/:slug" exact>
-          <SingleRoom />
-        </Route>
-        <Route>
-          <Error />
-        </Route>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/rooms/" component={Rooms} />
+        <Route exact path="/rooms/:slug" component={SingleRoom} />
+        <Route component={Error} />
       </Switch>
     </>
   );

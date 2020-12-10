@@ -12,7 +12,7 @@ export default class SingleRoom extends Component {
     // console.log(this.props);
     this.state = {
       slug: this.props.match.params.slug,
-      defaultBcg
+      defaultBcg: defaultBcg
     };
   }
 
