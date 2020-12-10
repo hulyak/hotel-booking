@@ -14,7 +14,7 @@ const Room = ({ room }) => {
             <h6>${price}</h6>
             <p>per night</p>
         </div>
-        {/* dynamically link to every room with param */}
+        {/* dynamically link to every room with param, show SingleRoom */}
         <Link to={`/rooms/${slug}`} className="btn-primary room-link">Features</Link>
       </div>
       <p className="room-info">{name}</p>

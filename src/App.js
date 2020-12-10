@@ -19,7 +19,7 @@ function App() {
         <Route path="/rooms" exact>
           <Rooms />
         </Route>
-        <Route path="/rooms/:slug">
+        <Route path="/rooms/:slug" exact>
           <SingleRoom />
         </Route>
         <Route>
